@@ -3,6 +3,7 @@ package com.github.gabrielbaron01
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -12,6 +13,10 @@ class PraiaAdapter : RecyclerView.Adapter<PraiaAdapter.ItemViewHolder>() {
 
     fun adicionarPraia(newPraia: PraiaModel) {
         praias.add(newPraia)
+        notifyDataSetChanged()
+    }
+    fun removePraia(praia: PraiaModel) {
+        praias.remove(praia)
         notifyDataSetChanged()
     }
 
@@ -29,10 +34,13 @@ class PraiaAdapter : RecyclerView.Adapter<PraiaAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView = view.findViewById<TextView>(R.id.textViewItem)
+        val button = view.findViewById<ImageButton>(R.id.imageButton)
         fun bind(praia: PraiaModel) {
-            textView.text = praia.nome
-            textView.text = praia.cidade
-            textView.text = praia.estado
+            textView.text = praia.nome + ", " + praia.cidade +", " + praia.estado
+
+            button.setOnClickListener {
+                praia.onRemove(praia)
+            }
         }
     }
 }

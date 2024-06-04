@@ -8,6 +8,15 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="125dp"
+        android:textColor="@color/teal_700"
+        android:text="Praias do Mundo"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        />
     <EditText
         android:id="@+id/editTextNome"
         android:layout_width="match_parent"
@@ -26,9 +35,16 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Incluir" />
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Incluir"
+        android:background="@drawable/botao_arredondado"
+        android:textColor="#FFFFFF"
+        android:padding="12dp"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

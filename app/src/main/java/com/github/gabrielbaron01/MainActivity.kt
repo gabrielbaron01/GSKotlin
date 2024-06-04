@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.gabrielbaron01.ui.theme.GabrielBaron_RM93266_recyclerViewTheme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -31,13 +32,25 @@ class MainActivity : ComponentActivity() {
         val editTextEstado = findViewById<EditText>(R.id.editTextEstado)
 
         button.setOnClickListener {
+            if (editTextNome.text.isEmpty() && editTextCidade.text.isEmpty() && editTextEstado.text.isEmpty()) {
+                editTextNome.error = "Preencha um valor"
+                editTextCidade.error = "Preencha um valor"
+                editTextEstado.error = "Preencha um valor"
+                return@setOnClickListener
+            }
+
             val praia = PraiaModel(
                 nome = editTextNome.text.toString(),
                 cidade = editTextCidade.text.toString(),
-                estado = editTextEstado.text.toString()
+                estado = editTextEstado.text.toString(),
+                onRemove = {
+                    itemsAdapter.removePraia(it)
+                }
             )
-
             itemsAdapter.adicionarPraia(praia)
+            editTextNome.text.clear()
+            editTextCidade.text.clear()
+            editTextEstado.text.clear()
         }
     }
 }
